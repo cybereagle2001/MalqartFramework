@@ -41,6 +41,7 @@ def main():
                 print("""
 Available Commands:
     help                                    -> Show this help
+    setup                                   -> Install required libraries and download SecLists starter
     list_modules                            -> List available modules
     use <module_name>                       -> Launch a specific module
     update_modules                          -> Pull latest changes from module repos (if git present)
@@ -93,7 +94,16 @@ Available Modules:
                     else:
                         print(f"    [-] Repository directory for {module_name} not found: {repo_root}")
                 print("[*] Update process completed.")
-
+            elif command == "setup":
+                print("[*] Running Malqart Framework setup...")
+                try:
+                    from MalqartDatabase_config import setup_framework
+                    setup_framework()
+                except ImportError as e:
+                    print(f"[-] Could not import setup function: {e}")
+                    except Exception as e:
+                        print(f"[-] Setup failed: {e}")
+        
             elif command == "use":
                 if len(parts) < 2:
                     print("[-] Usage: use <module_name>")
