@@ -3,6 +3,7 @@
 > **The Unified Offensive Toolkit for Modern Penetration Testing**  
 > *Where reconnaissance meets precision, and evasion meets control.*  
 > **Crafted for security researchers, pentesters, and CTF players who value both function and form.**
+<img width="912" height="342" alt="image" src="https://github.com/user-attachments/assets/13018521-1fde-45be-ba81-84920d95d374" />
 
 ---
 
