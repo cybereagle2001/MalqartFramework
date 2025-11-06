@@ -9,10 +9,11 @@ MALQART_DB_PATH = Path(__file__).parent / "MalqartDatabase"
 
 # Define required libraries for the framework and its modules
 REQUIRED_LIBRARIES = [
-    "requests",
-    "cvss", # For Malqart_cvss.py
+    "requests", # For Malqart_nvdscanner.py, Malqart_subdomain_enum.py, Malqart_bruteforcer.py (HTTP)
+    "cvss",     # For Malqart_cvss.py
+    "paramiko", # For Malqart_bruteforcer.py (SSH)
     # Add more libraries as needed by other modules
-    # e.g., "paramiko", "pysnmp", "pycryptodome" (for potential RouterSploit-style modules)
+    # e.g., "pysnmp", "pycryptodome" (for potential RouterSploit-style modules)
 ]
 
 # Define common SecLists files to download as a starter pack
@@ -27,7 +28,8 @@ SECLISTS_STARTER_FILES = {
         "raft-large-words-lowercase.txt"
     ],
     "Passwords": [
-        "10-million-password-list-top-100.txt"
+        "10-million-password-list-top-100.txt",
+        "rockyou.txt" # Add a more common one if desired, though it's large
     ],
     "Usernames": [
         "usernames.txt"
@@ -95,7 +97,7 @@ def download_seclists_starter():
     This is a basic implementation that clones the entire repo into a temporary location
     and copies only the specified starter files.
     """
-    seclists_repo_url = "https://github.com/danielmiessler/SecLists.git"
+    seclists_repo_url = "https://github.com/danielmiessler/SecLists.git" # Fixed trailing space
     temp_dir = MALQART_DB_PATH / "temp_seclists_download"
 
     if MALQART_DB_PATH.is_dir():
