@@ -14,7 +14,7 @@ MODULES = {
     "nvdscanner": "Malqart_nvdscanner/Malqart_nvdscanner.py",
     "android_exporter": "Malqart-Android-Data-Exporter/Malqart_android_exporter.py",
     "subdomain_enum": "Malqart-Subdomain-Enumerator/Malqart_subdomain_enum.py",
-    "bruteforcer": "Malqart_Bruteforcer_Module/Malqart_bruteforcer.py",
+    "bruteforcer": "Malqart_Bruteforcer_Module/Malqart_bruteforcer.py", # Added bruteforcer module mapping
     # Add more mappings as you create new modules in their own repos
 }
 
@@ -127,6 +127,7 @@ Available Modules:
                     else:
                         print(f"    [-] Repository directory for {module_name} not found: {repo_root}")
                 print("[*] Update process completed.")
+
             elif command == "setup":
                 print("[*] Running Malqart Framework setup...")
                 try:
@@ -134,8 +135,8 @@ Available Modules:
                     setup_framework()
                 except ImportError as e:
                     print(f"[-] Could not import setup function: {e}")
-                    except Exception as e:
-                        print(f"[-] Setup failed: {e}")
+                except Exception as e: # Fixed: Proper indentation and syntax for the second except
+                    print(f"[-] Setup failed: {e}")
         
             elif command == "use":
                 if len(parts) < 2:
