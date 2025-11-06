@@ -87,6 +87,7 @@ Available Modules:
     nvdscanner     -> Live CVE lookup from NVD based on banners
     android_exporter -> Export databases from Android data directories
     subdomain_enum -> Enumerate subdomains via wordlist/CT logs
+    bruteforcer    -> BruteForce login 
                 """)
 
             elif command == "list_modules":
