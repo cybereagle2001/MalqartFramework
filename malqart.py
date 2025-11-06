@@ -19,9 +19,9 @@ MODULES = {
 }
 
 def main():
-    print("Malqart Framework v2.0 — Unified Offensive Toolkit (Git-Based)")
-    print("Inspired by ShellForge, RouterSploit, and TNSCANNER.")
+    print("Malqart Framework v1.0 — Unified Offensive Toolkit (Git-Based)")
     print("Modules are loaded from separate Git repositories.")
+    
     print("Type 'help' for commands or 'use <module>' to launch a module.\n")
 
     while True:
