@@ -160,6 +160,5 @@ def setup_framework():
 # if path:
 #    print(f"Using wordlist: {path}")
 
-# Example usage for setup:
-# if __name__ == "__main__":
-#     setup_framework()
+if __name__ == "__main__":
+     setup_framework()
