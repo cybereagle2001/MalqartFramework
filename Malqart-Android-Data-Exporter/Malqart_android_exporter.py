@@ -72,7 +72,32 @@ class AndroidDataExporterSession:
 
         print(f"\n[*] Export completed. {copied_count} database file(s) copied to '{self.output_dir}'.")
 
+        # Print the tree structure of the output directory
+        print(f"\n[*] Final directory structure of '{self.output_dir}':")
+        print_tree(Path(self.output_dir))
+
 # ========== CONSOLE ==========
+def print_tree(path, prefix="", is_last=True):
+    """
+    Prints a tree-like structure of the given path.
+    Mimics the 'tree' command output.
+    """
+    if not path.exists():
+        print(f"{prefix}{'└── ' if is_last else '├── '}<directory does not exist>")
+        return
+
+    contents = sorted(path.iterdir(), key=lambda x: (x.is_file(), x.name))
+    pointers = ["├── ", "└── "]
+
+    for i, item in enumerate(contents):
+        is_last_item = i == len(contents) - 1
+        current_pointer = pointers[is_last_item]
+        print(f"{prefix}{current_pointer}{item.name}")
+
+        if item.is_dir():
+            extension = "    " if is_last_item else "│   "
+            print_tree(item, prefix=prefix + extension, is_last=is_last_item)
+
 def main():
     session = AndroidDataExporterSession()
     print("Malqart Android Data Exporter v1.0 — Export Databases from Android Data Dir")
