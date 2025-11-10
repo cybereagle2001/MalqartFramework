@@ -58,11 +58,9 @@ The **Malqart Framework** is a modular, `msfconsole`-style collection of offensi
 
 2.  **Install Dependencies & Download SecLists:**
     ```bash
-    # Run the integrated setup (from MalqartFramework directory)
+
     python3 MalqartDatabase_config.py
-    # Then uncomment the setup lines in the script and run again:
-    # if __name__ == "__main__":
-    #     setup_framework()
+
     ```
     Or follow the specific instructions in each module's README for dependencies (e.g., `pip3 install requests cvss`).
 
