@@ -1,0 +1,720 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MALQART - Ancient Cyber Warfare</title>
+  <script src="/_sdk/element_sdk.js"></script>
+  <style>
+    body {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Cinzel', 'Georgia', serif;
+      background: linear-gradient(135deg, #1a0f0a 0%, #2d1810 50%, #1a0f0a 100%);
+      color: #d4af37;
+      overflow-x: hidden;
+      min-height: 100%;
+    }
+
+    html {
+      height: 100%;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    /* Ancient texture overlay */
+    .texture-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: 
+        repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,.1) 2px, rgba(0,0,0,.1) 4px),
+        repeating-linear-gradient(90deg, transparent, transparent 2px, rgba(0,0,0,.1) 2px, rgba(0,0,0,.1) 4px);
+      pointer-events: none;
+      opacity: 0.3;
+      z-index: 1;
+    }
+
+    .container {
+      position: relative;
+      z-index: 2;
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    /* Header */
+    header {
+      padding: 30px 0;
+      border-bottom: 3px solid #8b4513;
+      background: rgba(0, 0, 0, 0.5);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.8);
+    }
+
+    .header-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+
+    .logo-section {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .logo {
+      width: 80px;
+      height: 80px;
+      filter: drop-shadow(0 0 10px #d4af37);
+    }
+
+    .brand {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .tool-name {
+      font-size: 2.5em;
+      font-weight: bold;
+      letter-spacing: 4px;
+      text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.8);
+      margin: 0;
+    }
+
+    .tagline {
+      font-size: 0.9em;
+      color: #c9a961;
+      font-style: italic;
+      margin: 5px 0 0 0;
+    }
+
+    /* Navigation */
+    nav {
+      background: rgba(0, 0, 0, 0.7);
+      padding: 10px 0;
+      border-bottom: 2px solid #8b4513;
+    }
+
+    .nav-links {
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    .nav-links li a {
+      color: #d4af37;
+      text-decoration: none;
+      font-size: 1.1em;
+      font-weight: bold;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      transition: color 0.3s ease;
+      position: relative;
+    }
+
+    .nav-links li a:hover {
+      color: #ffd700;
+    }
+
+    .nav-links li a::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: #d4af37;
+      transition: width 0.3s ease;
+    }
+
+    .nav-links li a:hover::after {
+      width: 100%;
+    }
+
+    /* Hero Section */
+    .hero {
+      padding: 80px 0;
+      text-align: center;
+      position: relative;
+    }
+
+    .hero::before {
+      content: '⚔️';
+      position: absolute;
+      font-size: 300px;
+      opacity: 0.05;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) rotate(-15deg);
+      pointer-events: none;
+    }
+
+    .hero-title {
+      font-size: 3.5em;
+      margin: 0 0 30px 0;
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      text-shadow: 4px 4px 8px rgba(0, 0, 0, 0.9);
+      animation: glow 3s ease-in-out infinite;
+    }
+
+    @keyframes glow {
+      0%, 100% { text-shadow: 4px 4px 8px rgba(0, 0, 0, 0.9), 0 0 20px rgba(212, 175, 55, 0.3); }
+      50% { text-shadow: 4px 4px 8px rgba(0, 0, 0, 0.9), 0 0 40px rgba(212, 175, 55, 0.6); }
+    }
+
+    .hero-description {
+      font-size: 1.3em;
+      max-width: 800px;
+      margin: 0 auto 40px;
+      line-height: 1.8;
+      color: #c9a961;
+    }
+
+    /* Features Grid */
+    .features {
+      padding: 60px 0;
+      background: linear-gradient(180deg, rgba(0,0,0,0.3) 0%, rgba(139,69,19,0.1) 100%);
+      border-top: 2px solid #8b4513;
+      border-bottom: 2px solid #8b4513;
+    }
+
+    .section-title {
+      text-align: center;
+      font-size: 2.5em;
+      margin: 0 0 50px 0;
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      position: relative;
+      padding-bottom: 20px;
+    }
+
+    .section-title::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100px;
+      height: 3px;
+      background: linear-gradient(90deg, transparent, #d4af37, transparent);
+    }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 30px;
+      margin-top: 50px;
+    }
+
+    .feature-card {
+      background: rgba(0, 0, 0, 0.6);
+      border: 2px solid #8b4513;
+      padding: 30px 25px;
+      text-align: left;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .feature-card::before {
+      content: '';
+      position: absolute;
+      top: -2px;
+      left: -2px;
+      right: -2px;
+      bottom: -2px;
+      background: linear-gradient(45deg, #d4af37, #8b4513);
+      z-index: -1;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .feature-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 10px 40px rgba(212, 175, 55, 0.3);
+    }
+
+    .feature-card:hover::before {
+      opacity: 0.3;
+    }
+
+    .feature-icon {
+      font-size: 3em;
+      margin-bottom: 15px;
+      filter: drop-shadow(0 0 10px rgba(212, 175, 55, 0.5));
+      display: inline-block;
+    }
+    
+    .module-header {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      margin-bottom: 15px;
+    }
+
+    .feature-title {
+      font-size: 1.4em;
+      margin: 0;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      flex: 1;
+    }
+    
+    .module-name {
+      font-family: 'Courier New', monospace;
+      font-size: 0.75em;
+      color: #8b4513;
+      margin-bottom: 10px;
+      display: block;
+    }
+
+    .feature-description {
+      font-size: 1em;
+      line-height: 1.6;
+      color: #c9a961;
+      margin-bottom: 15px;
+    }
+    
+    .feature-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    
+    .feature-list li {
+      font-size: 0.9em;
+      color: #d4af37;
+      padding: 5px 0;
+      padding-left: 20px;
+      position: relative;
+    }
+    
+    .feature-list li::before {
+      content: '⚡';
+      position: absolute;
+      left: 0;
+      color: #ffd700;
+    }
+
+    /* Philosophy Section */
+    .philosophy {
+      padding: 60px 0;
+      background: rgba(0, 0, 0, 0.4);
+      border-top: 2px solid #8b4513;
+      border-bottom: 2px solid #8b4513;
+    }
+
+    .philosophy-content {
+      max-width: 800px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .philosophy p {
+      font-size: 1.2em;
+      line-height: 1.8;
+      color: #c9a961;
+      margin-bottom: 20px;
+    }
+
+    /* CTA Section */
+    .cta-section {
+      padding: 80px 0;
+      text-align: center;
+    }
+
+    .cta-button {
+      display: inline-block;
+      padding: 20px 60px;
+      font-size: 1.5em;
+      font-weight: bold;
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      background: linear-gradient(135deg, #8b4513 0%, #d4af37 100%);
+      color: #1a0f0a;
+      border: 3px solid #d4af37;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      box-shadow: 0 5px 20px rgba(212, 175, 55, 0.4);
+      position: relative;
+      overflow: hidden;
+      margin: 10px;
+      cursor: pointer; /* Indicate it's clickable */
+    }
+
+    .cta-button::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 0;
+      height: 0;
+      background: rgba(255, 255, 255, 0.2);
+      border-radius: 50%;
+      transform: translate(-50%, -50%);
+      transition: width 0.6s ease, height 0.6s ease;
+    }
+
+    .cta-button:hover::before {
+      width: 300px;
+      height: 300px;
+    }
+
+    .cta-button:hover {
+      transform: scale(1.05);
+      box-shadow: 0 8px 30px rgba(212, 175, 55, 0.6);
+    }
+
+    .copy-button {
+      background: rgba(139, 69, 19, 0.8);
+      border: 2px solid #d4af37;
+      color: #d4af37;
+    }
+
+    .copy-button:hover {
+      background: rgba(212, 175, 55, 0.2);
+      color: #ffd700;
+    }
+
+    /* Footer */
+    footer {
+      padding: 40px 0;
+      text-align: center;
+      border-top: 3px solid #8b4513;
+      background: rgba(0, 0, 0, 0.7);
+    }
+
+    .developer {
+      font-size: 1.2em;
+      margin-bottom: 15px;
+      color: #d4af37;
+    }
+
+    .developer-name {
+      font-weight: bold;
+      color: #ffd700;
+    }
+
+    .disclaimer {
+      font-size: 0.9em;
+      color: #c9a961;
+      font-style: italic;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .tool-name {
+        font-size: 1.8em;
+      }
+
+      .nav-links {
+        flex-direction: column;
+        gap: 10px;
+      }
+
+      .hero-title {
+        font-size: 2.2em;
+      }
+
+      .hero-description {
+        font-size: 1.1em;
+      }
+
+      .features-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .cta-button {
+        padding: 15px 40px;
+        font-size: 1.2em;
+        display: block;
+        margin: 10px auto;
+        width: 80%;
+        max-width: 300px;
+      }
+    }
+  </style>
+  <style>@view-transition { navigation: auto; }</style>
+  <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
+  <script src="https://cdn.tailwindcss.com  " type="text/javascript"></script>
+ </head>
+ <body>
+  <div class="texture-overlay"></div>
+  <header>
+   <div class="container">
+    <div class="header-content">
+     <div class="logo-section">
+      <svg class="logo" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><defs>
+        <lineargradient id="swordGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+         <stop offset="0%" style="stop-color:#d4af37;stop-opacity:1" />
+         <stop offset="100%" style="stop-color:#ffd700;stop-opacity:1" />
+        </lineargradient>
+       </defs> <!-- Sword blade --> <path d="M50 10 L55 70 L50 75 L45 70 Z" fill="url(#swordGradient)" stroke="#8b4513" stroke-width="1" /> <!-- Sword guard --> <rect x="35" y="70" width="30" height="5" fill="url(#swordGradient)" stroke="#8b4513" stroke-width="1" /> <!-- Sword handle --> <rect x="47" y="75" width="6" height="15" fill="#8b4513" stroke="#d4af37" stroke-width="1" /> <!-- Sword pommel --> <circle cx="50" cy="92" r="5" fill="url(#swordGradient)" stroke="#8b4513" stroke-width="1" /> <!-- Blade shine --> <path d="M50 15 L52 65 L50 68 Z" fill="rgba(255,255,255,0.3)" />
+      </svg>
+      <div class="brand">
+       <h1 class="tool-name" id="toolName">MALQART</h1>
+       <p class="tagline" id="tagline">Ancient Power, Modern Warfare</p>
+      </div>
+     </div>
+    </div>
+   </div>
+  </header>
+
+  <!-- Added Navigation -->
+  <nav>
+    <div class="container">
+        <ul class="nav-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#modules">Modules</a></li>
+            <li><a href="#philosophy">Philosophy</a></li>
+            <li><a href="https://github.com/cybereagle2001/MalqartFramework/" target="_blank" rel="noopener">GitHub</a></li>
+            <li><a href="https://github.com/cybereagle2001/MalqartFramework/issues" target="_blank" rel="noopener">Community</a></li>
+        </ul>
+    </div>
+  </nav>
+
+  <main>
+   <section id="home" class="hero">
+    <div class="container">
+     <h2 class="hero-title" id="heroTitle">Unleash the Wrath of MALQART</h2>
+     <p class="hero-description" id="heroDescription">An open-source offensive cyber security arsenal forged in the fires of ancient Carthage. Like Hannibal crossing the Alps, MALQART conquers digital fortresses with strategic precision and unstoppable force.</p>
+    </div>
+   </section>
+   <section id="modules" class="features">
+    <div class="container">
+     <h2 class="section-title">⚔️ Weapons of the Legion ⚔️</h2>
+     <div class="features-grid"><!-- Module 1: Shell Module -->
+      <div class="feature-card">
+       <div class="module-header">
+        <div class="feature-icon">
+         🐚
+        </div>
+        <div><span class="module-name">malqart_shell_module</span>
+         <h3 class="feature-title">Reverse Shell Generation</h3>
+        </div>
+       </div>
+       <p class="feature-description">Forge your connection to conquered territories with versatile shell generation.</p>
+       <ul class="feature-list">
+        <li>6+ formats (PHP, PNG, PY, SH)</li>
+        <li>5 obfuscation methods</li>
+        <li>5 bypass techniques</li>
+       </ul>
+       <a href="https://github.com/cybereagle2001/MalqartFramework/tree/main/Malqart_shell_module" target="_blank" rel="noopener" style="color: #d4af37; text-decoration: underline; font-size: 0.9em; display: inline-block; margin-top: 10px;">Browse Module</a>
+      </div><!-- Module 2: Clickjacker -->
+      <div class="feature-card">
+       <div class="module-header">
+        <div class="feature-icon">
+         🎯
+        </div>
+        <div><span class="module-name">malqart_clickjacker</span>
+         <h3 class="feature-title">Clickjacking PoC</h3>
+        </div>
+       </div>
+       <p class="feature-description">Deceive the enemy with invisible traps and strategic misdirection.</p>
+       <ul class="feature-list">
+        <li>Multi-target support</li>
+        <li>Polyglot file generation</li>
+        <li>Auto-server &amp; browser launch</li>
+       </ul>
+       <a href="https://github.com/cybereagle2001/MalqartFramework/tree/main/Malqart-Clickjacker-Module" target="_blank" rel="noopener" style="color: #d4af37; text-decoration: underline; font-size: 0.9em; display: inline-block; margin-top: 10px;">Browse Module</a>
+      </div><!-- Module 3: 403 Bypasser -->
+      <div class="feature-card">
+       <div class="module-header">
+        <div class="feature-icon">
+         🚪
+        </div>
+        <div><span class="module-name">malqart_403_bypasser</span>
+         <h3 class="feature-title">403/401 Path Bypass</h3>
+        </div>
+       </div>
+       <p class="feature-description">Break through forbidden gates like Hannibal breaching Roman defenses.</p>
+       <ul class="feature-list">
+        <li>40+ real-world techniques</li>
+        <li>Headers, paths, verbs manipulation</li>
+        <li>Parallel execution</li>
+       </ul>
+       <a href="https://github.com/cybereagle2001/MalqartFramework/tree/main/Malqart_403_Forbidden_Module" target="_blank" rel="noopener" style="color: #d4af37; text-decoration: underline; font-size: 0.9em; display: inline-block; margin-top: 10px;">Browse Module</a>
+      </div><!-- Module 4: CVSS -->
+      <div class="feature-card">
+       <div class="module-header">
+        <div class="feature-icon">
+         📊
+        </div>
+        <div><span class="module-name">malqart_cvss</span>
+         <h3 class="feature-title">CVSS Scoring</h3>
+        </div>
+       </div>
+       <p class="feature-description">Assess the severity of vulnerabilities with precision and clarity.</p>
+       <ul class="feature-list">
+        <li>CVSS v3.1 &amp; v4.0 support</li>
+        <li>Interactive &amp; paste modes</li>
+        <li>Auto-prefix handling</li>
+       </ul>
+       <a href="https://github.com/cybereagle2001/MalqartFramework/tree/main/Malqart_CVSS_Module" target="_blank" rel="noopener" style="color: #d4af37; text-decoration: underline; font-size: 0.9em; display: inline-block; margin-top: 10px;">Browse Module</a>
+      </div><!-- Module 5: NVD Scanner -->
+      <div class="feature-card">
+       <div class="module-header">
+        <div class="feature-icon">
+         🔍
+        </div>
+        <div><span class="module-name">malqart_nvdscanner</span>
+         <h3 class="feature-title">Live CVE Scanner</h3>
+        </div>
+       </div>
+       <p class="feature-description">Scout enemy weaknesses through intelligence gathering and analysis.</p>
+       <ul class="feature-list">
+        <li>Port scan → Banner grab</li>
+        <li>CPE identification</li>
+        <li>NVD API lookup integration</li>
+       </ul>
+       <a href="https://github.com/cybereagle2001/MalqartFramework/tree/main/Malqart_nvdscanner" target="_blank" rel="noopener" style="color: #d4af37; text-decoration: underline; font-size: 0.9em; display: inline-block; margin-top: 10px;">Browse Module</a>
+      </div><!-- Module 6: Subdomain Enum -->
+      <div class="feature-card">
+       <div class="module-header">
+        <div class="feature-icon">
+         🗺️
+        </div>
+        <div><span class="module-name">malqart_subdomain_enum</span>
+         <h3 class="feature-title">Subdomain Enumeration</h3>
+        </div>
+       </div>
+       <p class="feature-description">Map the entire enemy territory to reveal hidden strongholds.</p>
+       <ul class="feature-list">
+        <li>Wordlist-based discovery</li>
+        <li>CT logs (crt.sh) integration</li>
+        <li>SecLists integration</li>
+       </ul>
+       <a href="https://github.com/cybereagle2001/MalqartFramework/tree/main/Malqart-Subdomain-Enumerator" target="_blank" rel="noopener" style="color: #d4af37; text-decoration: underline; font-size: 0.9em; display: inline-block; margin-top: 10px;">Browse Module</a>
+      </div><!-- Module 7: Android Exporter -->
+      <div class="feature-card">
+       <div class="module-header">
+        <div class="feature-icon">
+         📱
+        </div>
+        <div><span class="module-name">malqart_android_exporter</span>
+         <h3 class="feature-title">Android Data Extractor</h3>
+        </div>
+       </div>
+       <p class="feature-description">Plunder mobile fortresses and extract valuable intelligence.</p>
+       <ul class="feature-list">
+        <li>Database extraction</li>
+        <li>Local data directory access</li>
+        <li>Structured data export</li>
+       </ul>
+       <a href="https://github.com/cybereagle2001/MalqartFramework/tree/main/Malqart-Android-Data-Exporter" target="_blank" rel="noopener" style="color: #d4af37; text-decoration: underline; font-size: 0.9em; display: inline-block; margin-top: 10px;">Browse Module</a>
+      </div>
+     </div>
+    </div>
+   </section>
+
+   <!-- Added Philosophy Section -->
+   <section id="philosophy" class="philosophy">
+    <div class="container">
+        <h2 class="section-title">⚔️ Philosophy ⚔️</h2>
+        <div class="philosophy-content">
+            <p>MALQART embodies the strategic cunning of Melqart and the relentless determination of Hannibal. It is forged from the principles of modularity, precision, and adaptability.</p>
+            <p>Like the ancient Carthaginian forces, MALQART's strength lies not in a single, monolithic tool, but in a cohesive legion of specialized, interoperable modules. Each component is designed for a specific purpose, yet unified under a common, intuitive command structure.</p>
+            <p>It champions the open-source spirit, inviting the community to contribute, refine, and expand its arsenal. The power of the collective mind surpasses any single blade.</p>
+        </div>
+    </div>
+   </section>
+
+   <section class="cta-section">
+    <div class="container">
+        <!-- Main GitHub Link Button -->
+        <a href="https://github.com/cybereagle2001/MalqartFramework" id="ctaButton" class="cta-button" target="_blank" rel="noopener noreferrer"> Join the Legion </a>
+        <!-- Copy Link Button -->
+        <button class="cta-button copy-button" onclick="copyLink()"> Copy Repository Link </button>
+        <!-- Open Issues Button -->
+        <a href="https://github.com/cybereagle2001/MalqartFramework/issues" class="cta-button" target="_blank" rel="noopener noreferrer"> Open an Issue </a>
+    </div>
+   </section>
+  </main>
+  <footer>
+   <div class="container">
+    <p class="developer">Forged by <span class="developer-name" id="developerName">cybereagle2001</span></p>
+    <p class="disclaimer" id="footerText">For educational and authorized testing purposes only. Use responsibly and ethically.</p>
+   </div>
+  </footer>
+  <script>
+    const defaultConfig = {
+      tool_name: "MALQART",
+      tagline: "Ancient Power, Modern Warfare",
+      hero_title: "Unleash the Wrath of MALQART",
+      hero_description: "An open-source offensive cyber security arsenal forged in the fires of ancient Carthage. Like Hannibal crossing the Alps, MALQART conquers digital fortresses with strategic precision and unstoppable force.",
+      cta_button_text: "Join the Legion",
+      github_link: "https://github.com/cybereagle2001/MalqartFramework",
+      developer_name: "cybereagle2001",
+      footer_text: "For educational and authorized testing purposes only. Use responsibly and ethically."
+    };
+
+    async function onConfigChange(config) {
+      document.getElementById('toolName').textContent = config.tool_name || defaultConfig.tool_name;
+      document.getElementById('tagline').textContent = config.tagline || defaultConfig.tagline;
+      document.getElementById('heroTitle').textContent = config.hero_title || defaultConfig.hero_title;
+      document.getElementById('heroDescription').textContent = config.hero_description || defaultConfig.hero_description;
+      document.getElementById('ctaButton').textContent = config.cta_button_text || defaultConfig.cta_button_text;
+      document.getElementById('ctaButton').href = config.github_link || defaultConfig.github_link;
+      document.getElementById('developerName').textContent = config.developer_name || defaultConfig.developer_name;
+      document.getElementById('footerText').textContent = config.footer_text || defaultConfig.footer_text;
+    }
+
+    function mapToCapabilities(config) {
+      return {
+        recolorables: [],
+        borderables: [],
+        fontEditable: undefined,
+        fontSizeable: undefined
+      };
+    }
+
+    function mapToEditPanelValues(config) {
+      return new Map([
+        ["tool_name", config.tool_name || defaultConfig.tool_name],
+        ["tagline", config.tagline || defaultConfig.tagline],
+        ["hero_title", config.hero_title || defaultConfig.hero_title],
+        ["hero_description", config.hero_description || defaultConfig.hero_description],
+        ["cta_button_text", config.cta_button_text || defaultConfig.cta_button_text],
+        ["github_link", config.github_link || defaultConfig.github_link],
+        ["developer_name", config.developer_name || defaultConfig.developer_name],
+        ["footer_text", config.footer_text || defaultConfig.footer_text]
+      ]);
+    }
+
+    if (window.elementSdk) {
+      window.elementSdk.init({
+        defaultConfig,
+        onConfigChange,
+        mapToCapabilities,
+        mapToEditPanelValues
+      });
+    }
+
+    // Function to copy the main GitHub link
+    function copyLink() {
+        const linkToCopy = "https://github.com/cybereagle2001/MalqartFramework";
+        navigator.clipboard.writeText(linkToCopy).then(() => {
+            alert("Repository link copied to clipboard!");
+        }).catch(err => {
+            console.error('Failed to copy: ', err);
+            alert("Failed to copy link. Please copy it manually.");
+        });
+    }
+
+  </script>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'99c66a7374b67782',t:'MTc2Mjc4Njc4OC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
