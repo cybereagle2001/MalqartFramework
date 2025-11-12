@@ -37,6 +37,7 @@ The **Malqart Framework** is a modular, `msfconsole`-style collection of offensi
 | `Malqart_nvdscanner` | Live CVE Scanner | Port scan → Banner → CPE → NVD API lookup |
 | `Malqart_subdomain_enum` | Subdomain Enumeration | Wordlist & CT logs (`crt.sh`), SecLists integration |
 | `Malqart_android_exporter` | Android Data Extractor | Export databases from local data directory structures |
+| `Malqart_URI_Enumeration` | URL enumerator | Use a big wordlist for URL enumeration |
 
 ---
 
