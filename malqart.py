@@ -14,12 +14,14 @@ MODULES = {
     "nvdscanner": "Malqart_nvdscanner/Malqart_nvdscanner.py",
     "android_exporter": "Malqart-Android-Data-Exporter/Malqart_android_exporter.py",
     "subdomain_enum": "Malqart-Subdomain-Enumerator/Malqart_subdomain_enum.py",
-    "bruteforcer": "Malqart_Bruteforcer_Module/Malqart_bruteforcer.py", # Added bruteforcer module mapping
+    "url_enumeration" : "Malqart_URI_ENUM_Module/Malqart_uri_enum.py"
     # Add more mappings as you create new modules in their own repos
+    # "bruteforcer": "Malqart_Bruteforcer_Module/Malqart_bruteforcer.py",
 }
 
 def main():
-    print("Malqart Framework v1.0 — Unified Offensive Toolkit (Git-Based)")
+    print("Malqart Framework v2.0 — Unified Offensive Toolkit (Git-Based)")
+    print("Inspired by ShellForge, msfconsole and TNSCANNER.")
     print("Modules are loaded from separate Git repositories.")
     print("""
 MMMMMMMMMMMMMMMMMMMMMMMMMMMMOOOOWMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
@@ -53,7 +55,6 @@ MMMMMMMMMMMMMMMMMMMMMMMKKKWMMMNKKXMWKKKMMMKKKMMNKKKKKKKKNMMXKKo. .0MMMNKKXMMWKKK
 MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMWKNMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
 MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
     """)
-    
     print("Type 'help' for commands or 'use <module>' to launch a module.\n")
 
     while True:
@@ -73,7 +74,6 @@ MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
                 print("""
 Available Commands:
     help                                    -> Show this help
-    setup                                   -> Install required libraries and download SecLists starter
     list_modules                            -> List available modules
     use <module_name>                       -> Launch a specific module
     update_modules                          -> Pull latest changes from module repos (if git present)
@@ -87,7 +87,7 @@ Available Modules:
     nvdscanner     -> Live CVE lookup from NVD based on banners
     android_exporter -> Export databases from Android data directories
     subdomain_enum -> Enumerate subdomains via wordlist/CT logs
-    bruteforcer    -> BruteForce login 
+    URL_Enumeration -> Enumerate URL on a website (similar to dirb / gobuster)
                 """)
 
             elif command == "list_modules":
@@ -128,16 +128,6 @@ Available Modules:
                         print(f"    [-] Repository directory for {module_name} not found: {repo_root}")
                 print("[*] Update process completed.")
 
-            elif command == "setup":
-                print("[*] Running Malqart Framework setup...")
-                try:
-                    from MalqartDatabase_config import setup_framework
-                    setup_framework()
-                except ImportError as e:
-                    print(f"[-] Could not import setup function: {e}")
-                except Exception as e: # Fixed: Proper indentation and syntax for the second except
-                    print(f"[-] Setup failed: {e}")
-        
             elif command == "use":
                 if len(parts) < 2:
                     print("[-] Usage: use <module_name>")
