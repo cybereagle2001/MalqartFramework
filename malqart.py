@@ -14,9 +14,9 @@ MODULES = {
     "nvdscanner": "Malqart_nvdscanner/Malqart_nvdscanner.py",
     "android_exporter": "Malqart-Android-Data-Exporter/Malqart_android_exporter.py",
     "subdomain_enum": "Malqart-Subdomain-Enumerator/Malqart_subdomain_enum.py",
-    "url_enumeration" : "Malqart_URI_ENUM_Module/Malqart_uri_enum.py"
+    "url_enumeration" : "Malqart_URI_ENUM_Module/Malqart_uri_enum.py",
     # Add more mappings as you create new modules in their own repos
-    "bruteforcer": "Malqart_Bruteforcer_Module/Malqart_bruteforcer.py",
+    "bruteforcer" : "Malqart_Bruteforcer_Module/Malqart_bruteforcer.py"
 }
 
 def main():
