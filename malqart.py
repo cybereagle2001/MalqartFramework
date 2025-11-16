@@ -16,7 +16,7 @@ MODULES = {
     "subdomain_enum": "Malqart-Subdomain-Enumerator/Malqart_subdomain_enum.py",
     "url_enumeration" : "Malqart_URI_ENUM_Module/Malqart_uri_enum.py"
     # Add more mappings as you create new modules in their own repos
-    # "bruteforcer": "Malqart_Bruteforcer_Module/Malqart_bruteforcer.py",
+    "bruteforcer": "Malqart_Bruteforcer_Module/Malqart_bruteforcer.py",
 }
 
 def main():
@@ -88,6 +88,7 @@ Available Modules:
     android_exporter -> Export databases from Android data directories
     subdomain_enum -> Enumerate subdomains via wordlist/CT logs
     URL_Enumeration -> Enumerate URL on a website (similar to dirb / gobuster)
+    bruteforcer    -> Brute Force Attack on protocol / web page
                 """)
 
             elif command == "list_modules":
