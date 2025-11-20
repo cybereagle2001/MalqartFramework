@@ -9,7 +9,7 @@
 
 ## 🚀 Overview
 
-The **Malqart Framework** is a modular, `msfconsole`-style collection of offensive security tools designed for speed, accuracy, and seamless integration. Inspired by the philosophies of **ShellForge**, **RouterSploit**, and **TNSCANNER**, it brings together essential functionalities—from reverse shell generation to vulnerability scanning—under one cohesive, interactive console.
+The **Malqart Framework** is a modular, `msfconsole`-style collection of offensive security tools designed for speed, accuracy, and seamless integration. Inspired by the philosophies of **ShellForge**, **RouterSploit**, and **TNSCANNER**, it brings together essential functionalities - from reverse shell generation to vulnerability scanning - under one cohesive, interactive console.
 
 > **Named after Melqart**, the Phoenician god of the underworld and merchants—symbolizing the **duality** of modern offensive security: stealthy yet powerful, hidden yet functional.
 
