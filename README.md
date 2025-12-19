@@ -39,6 +39,7 @@ The **Malqart Framework** is a modular, `msfconsole`-style collection of offensi
 | `Malqart_android_exporter` | Android Data Extractor | Export databases from local data directory structures |
 | `Malqart_URI_Enumeration` | URL enumerator | Use a big wordlist for URL enumeration |
 | `bruteforcer` | Brute Force attack | bruteforce attack module on a specified protocol (HTTP/ssh/ftp) |
+|`phisher`|Phishing Page Creator | creates identical phishing pages based on a provided URL|
 
 ---
 
