@@ -22,7 +22,7 @@ The **Malqart Framework** is a modular, `msfconsole`-style collection of offensi
 - **Integrated SecLists & Libraries**: Centralized `MalqartDatabase` for wordlists and a `MalqartDatabase_config.py` for easy setup and access.
 - **Extensible Design**: Easy to add new modules following the established patterns.
 - **Git-Based Management**: Core launcher (`malqart.py`) orchestrates updates for individual module repositories.
-<img width="984" height="869" alt="image" src="https://github.com/user-attachments/assets/e9f3fa66-2f6d-4201-bc01-eeb18afc9ae1" />
+<img width="985" height="912" alt="image" src="https://github.com/user-attachments/assets/28e14cc2-76b7-4131-bc6f-e5b1c7713bda" />
 
 ---
 
