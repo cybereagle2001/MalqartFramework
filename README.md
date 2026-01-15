@@ -177,4 +177,4 @@ This project is licensed under the MIT License - see the `LICENSE` file for deta
 ---
 
 > **Made with ❤️ for the offensive security community by Oussama Ben Hadj Dahman (@cybereagle2001).**  
-> **Malqart — Where deception meets precision. Where access denied is just the beginning.**
+> **Malqart - Where deception meets precision. Where access denied is just the beginning.**
